@@ -1,0 +1,17 @@
+{
+  "name": "gridtest",
+  "version": "0.0.0",
+  "authors": [
+    "fengfudev <fengfu.dev@gmail.com>"
+  ],
+  "description": "Grid test for Simply Wall St.",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

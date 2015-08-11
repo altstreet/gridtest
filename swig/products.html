@@ -1,0 +1,50 @@
+{% extends 'partials/layout.html' %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<section class="leading-section">
+    <div class="container">
+        <h2>The increase and diffusion of knowledge</h2>
+    </div>
+</section>
+
+
+{%
+    set items = [
+        {menuName: 'FootWear', subMenu: ['Men', 'Women', 'Kids']},
+        {menuName: 'Clothing', subMenu: ['Men', 'Women', 'Kids']},
+        {menuName: 'Sports', subMenu: ['Men', 'Women', 'Kids']},
+        {menuName: 'Fitness', subMenu: ['Men', 'Women', 'Kids']},
+   ]
+%}
+
+
+<section class="">
+    <div class="container">
+        <div class="row vertical-menu-parent">
+            <div class="col-sm-3 hidden-xs">
+                <nav class="vertical-menu">
+                    {% for item in items %}
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#" data-toggle="collapse" data-target="#{{item.menuName}}">{{item.menuName}}</a>
+                            <ul class="nav nav-pills nav-stacked collapse" id="{{item.menuName}}" role="menu">
+                                {% for menu in item.subMenu %}
+                                <li><a href="#">{{menu}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                </nav>
+            </div>
+            <div class="col-sm-9">
+                {% include 'partials/product-list.html' %}
+             </div>
+        </div>
+    </div>
+
+</section>
+
+
+{% endblock %}

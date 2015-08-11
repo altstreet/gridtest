@@ -1,0 +1,115 @@
+{% extends 'partials/layout.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<section class="showcase-section">
+    <div class="showcase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-5 col-md-7 showcase-content">
+                    <h1>Grid Test for Simply Wall St.</h1><br/>
+                    <p class="lead">Attractive Responsive UI design using <strong>bootstrap</strong></p>
+                    <p class="lead">Handle layout with unequal height snowflake container DIVs</p>
+                    <div class="downloads">
+                        <a href="#"><img src="images/btn-download.png" alt="Download"></a>
+                        <a href="#"><img src="images/btn-appstore.png" alt="Download"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{%
+    set items = [
+        {id: 1, class:'primary-background', content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quibusdam facere eligendi modi, blanditiis id accusantium illo vel, consectetur, temporibus officia natus nam voluptatem eos repellendus iusto voluptatibus quasi minima.'},
+        {id: 2, class:'secondary-background', content:'Atque ratione nam minus saepe, doloribus ipsum quibusdam ex. Maiores earum, commodi illum, veritatis voluptate minima quae culpa laborum laboriosam! Esse ea doloremque magnam minima quos illum, quam natus excepturi?'},
+        {id: 3, class:'tertiary-background', content:'Amet quis maiores, officia culpa ipsam, error cum nisi,  Pariatur enim officia culpa, facilis. Est, repudiandae alias sed consequatur consectetur!'},
+        {id: 4, class:'light-gradient', content:'Veniam ut, atque ea impedit, sit natus ducimus blanditiis. Deleniti facilis, delectus, ad repellat laboriosam voluptatibus, in eaque deserunt quasi molestiae fugit. Qui magni, quam fuga molestias, quo sint quibusdam.'},
+        {id: 5, class:'dark-gradient', content:'Cupiditate sequi voluptates, laboriosam, totam quasi cum voluptatum dicta sit magni ex nobis ab similique quis labore, repudiandae qui, commodi necessitatibus praesentium doloremque illo neque est unde aliquid! Facere, architecto!'},
+        {id: 6, class:'primary-gradient', content:'Iste corrupti quam ducimus culpa dolore commodi voluptatum nisi facere reiciendis, totam, veritatis mollitia sunt aut provident porro possimus fugit molestias deserunt. Ipsam reiciendis quod, iusto fugiat quo esse modi!'},
+    ]
+%}
+<section class="section-white">
+
+    <div class="container">
+        <div class="row blocks" data-autofix='1,2,3'>
+            {% for item in items %}
+            <div class="col-sm-6 col-md-4">
+                <div class="block text-block {{item.class}}">
+                    <h2>Article {{loop.index}}</h2>
+                    <p>{{item.content}}</p>
+                    <p><a href="#" class="btn btn-default">More</a></p>
+                </div>
+            </div>
+
+            <!-- <div class="clear"></div> -->
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+
+ {%
+    set items = [
+        {class:'fa-motorcycle', content:'Distinctio quibusdam facere eligendi modi, temporibus officia natus nam voluptatem eos repellendus iusto voluptatibus quasi minima.'},
+        {class:'fa-car', content:'Maiores earum, commodi illum, Esse ea doloremque magnam minima quos illum, quam natus excepturi?'},
+        {class:'fa-bus', content:'Pariatur enim officia culpa, facilis. Est, repudiandae alias sed consequatur consectetur!'},
+        {class:'fa-cab', content:'Deleniti facilis, delectus, ad repellat laboriosam voluptatibus, Qui magni, quam fuga molestias, quo sint quibusdam.'},
+        {class:'fa-subway', content:'Cupiditate sequi voluptates, laboriosam, Facere, architecto!'},
+        {class:'fa-bicycle', content:'Ipsam reiciendis quod, iusto fugiat quo esse modi!'},
+        {class:'fa-train', content:'Ipsam reiciendis quod, iusto fugiat quo esse modi!'},
+        {class:'fa-truck', content:'Ipsam reiciendis quod, iusto fugiat quo esse modi!'},
+    ]
+%}
+<section class="section-primary">
+
+    <div class="container">
+        <div class="row blocks" data-autofix='2,3,4'>
+            {% for item in items %}
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="block font-block white-background">
+                    <a href="#"><i class="fa fa-3x {{item.class}}"></i></a>
+                    <h2>Nice Car {{loop.index}}</h2>
+                    <p>{{item.content}}</p>
+                </div>
+            </div>
+
+            <!-- <div class="clear"></div> -->
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+ {%
+    set items = [
+        {src:'images/headshot1.jpg', content:'Distinctio quibusdam facere eligendi modi, temporibus officia natus nam voluptatem eos repellendus iusto voluptatibus quasi minima.'},
+        {src:'images/headshot2.jpg', content:'Maiores earum, commodi illum, Esse ea doloremque magnam minima quos illum, quam natus excepturi?'},
+        {src:'images/headshot3.jpg', content:'Pariatur enim officia culpa, facilis. Est, repudiandae alias sed consequatur consectetur!'},
+        {src:'images/headshot4.jpg', content:'Deleniti facilis, delectus, ad repellat laboriosam voluptatibus, Qui magni, quam fuga molestias, quo sint quibusdam.'},
+    ]
+%}
+<section class="section-secondary">
+
+    <div class="container">
+        <div class="row blocks" data-autofix='1,2,4'>
+            {% for item in items %}
+            <div class="col-sm-6 col-md-3">
+                <div class="block image-block white-background">
+                    <h2>Cousultant #{{loop.index}}</h2>
+                    <a href="#"><img src="{{item.src}}" alt=""></a>
+                    <p>{{item.content}}</p>
+                </div>
+            </div>
+
+            <!-- <div class="clear"></div> -->
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

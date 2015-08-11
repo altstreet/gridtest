@@ -1,0 +1,60 @@
+@mixin setSection($color: $primaryColor, $padding: 30px) {
+	@include setBackgroundColor($color);
+	padding: $padding 0;
+}
+
+.section-primary {
+	@include setSection($primaryColor);
+}
+
+.section-secondary {
+	@include setSection($secondaryColor);
+}
+
+.section-tertiary {
+	@include setSection($tertiaryColor);
+}
+
+.section-light {
+	@include setSection($lightColor);
+}
+
+.section-dark {
+	@include setSection($darkColor);
+}
+
+.section-white {
+	@include setSection(white);
+}
+
+.section-black {
+	@include setSection(black);
+}
+
+.header-section {
+
+}
+
+.footer-section {
+	@include setBackgroundColor($darkColor);
+	padding: 30px 0;
+}
+
+.showcase-section {
+	background :url('../images/business-slide.jpg') no-repeat top right;
+}
+
+.text-section {
+	background-color: white;
+	padding: 30px 0;
+}
+
+.font-section {
+	background-color: lighten($secondaryColor, 20%);
+	padding: 30px 0;
+}
+
+.image-section {
+	background-color: lighten($primaryColor, 20%);
+	padding: 30px 0;
+}

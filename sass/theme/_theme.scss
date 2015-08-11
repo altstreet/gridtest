@@ -1,0 +1,47 @@
+/*
+ *	Font style
+ */
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Merriweather);
+
+body {
+	font-family: $fontContent;
+	font-size: $fontSize;
+	color: $fontColor;
+	line-height: $lineHeight;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $fontTitle;
+	font-weight: 400;
+ 	// @include text-shadow(#AAA 1px 1px 2px);
+}
+
+h1 {
+	font-size: 2rem;
+	line-height: 2.5 * $fontSize;
+}
+
+h2 {
+	font-size: 1.6rem;
+	line-height: 2 * $fontSize;
+}
+
+h3 {
+	font-size: 1.2rem;
+}
+
+h4 {
+	font-size: 1rem;
+}
+
+h5 {
+	font-size: 0.8rem;
+}
+
+h6 {
+	font-size: 0.6rem;
+}
+
+input, textarea, button {
+	// @include border-radius(10px);
+}

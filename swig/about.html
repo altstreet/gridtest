@@ -1,0 +1,52 @@
+{% extends 'partials/layout.html' %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<section class="leading-section">
+    <div class="container">
+        <h2>The increase and diffusion of knowledge</h2>
+    </div>
+</section>
+
+
+{%
+    set items = [
+        {id: 'past', class:'fa-bicycle', content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora incidunt eveniet modi inventore quisquam repudiandae ipsam similique dolorum necessitatibus dicta veritatis nemo amet dolor quae, unde dolorem officiis optio consequatur animi est illum. Optio soluta sequi tenetur qui et accusamus maxime, adipisci provident quaerat recusandae aut saepe expedita quis sunt ipsam. Porro saepe minus, autem qui soluta ex velit voluptatibus maxime quia nisi, asperiores expedita sunt, tempora quisquam ad quas animi aliquam. Temporibus maxime aut, vero. Voluptate quidem odio nisi dolorem suscipit atque molestias aliquam amet quis deserunt nam, ducimus magnam eligendi perferendis et iste sit possimus cupiditate, tempore, cum repellendus culpa? Cumque debitis ratione ipsum voluptatem minima nihil obcaecati quas laborum eligendi odit voluptas quo, illo unde tempore dignissimos aliquam dolores voluptatibus perferendis modi reiciendis. Odit aspernatur ratione nulla aut similique architecto, laborum labore, non nemo quos tempore adipisci. Temporibus alias fugit deserunt cumque facere repudiandae explicabo debitis nostrum.'},
+        {id: 'current', class:'fa-train', content:'Corrupti sequi beatae, distinctio culpa porro amet necessitatibus pariatur saepe id odio eligendi alias natus, at autem quos maxime blanditiis, non tempore in. Pariatur deleniti consectetur beatae earum iusto quam vel quaerat, delectus iure itaque a, magnam modi blanditiis labore maxime quibusdam. Animi ipsum vel mollitia quaerat rerum quam ullam molestiae odio voluptate eos ex magni dolorum, officia debitis omnis optio, tenetur aut corrupti adipisci temporibus, alias maxime dolorem. Debitis, necessitatibus! Beatae quas, facere architecto! Enim aliquam dolorem impedit corporis dolor fugiat perspiciatis est repudiandae libero debitis. Magnam obcaecati rem consequuntur nihil, ea aliquid aperiam doloribus laboriosam vitae doloremque quisquam minus, autem id. Dolorem quod unde fuga odit odio earum repudiandae sapiente vel itaque! Ut fugiat accusantium fugit odit, culpa soluta est vitae laboriosam. Tempore est modi fugiat, sed maiores incidunt! Debitis eos officiis rerum molestias nesciunt quas soluta facilis voluptates qui eius excepturi magni, sint error autem et maiores!'},
+        {id: 'future', class:'fa-car', content:'Corporis consectetur quisquam, animi, similique rem unde in sed. Laboriosam illum sequi odio expedita officia. Illum ex magni modi, eum quibusdam, consequuntur vitae perspiciatis impedit praesentium, inventore ab at et animi perferendis rem distinctio quia similique temporibus quos sed maxime voluptates rerum. Consequatur aspernatur ad omnis cupiditate vitae odit. Mollitia impedit iste a deleniti velit nobis quos totam ut ullam, aspernatur maiores, dolorum voluptas blanditiis reiciendis eligendi autem, enim numquam. Nostrum similique natus corporis adipisci quo magni distinctio perferendis deserunt optio, tempora tempore cumque labore saepe dignissimos, incidunt officia! Officiis a tenetur distinctio consequatur, labore temporibus quod harum voluptate asperiores similique sunt, esse ipsum perspiciatis molestiae, quos reiciendis commodi dolor repellat facere repellendus molestias natus! Suscipit commodi repellat tenetur deleniti, quia, tempore quaerat maxime sint. Praesentium optio officiis assumenda accusantium, laudantium earum, aliquam laboriosam voluptas reiciendis, magnam consequuntur alias modi accusamus unde hic dolor aspernatur, sint at voluptatum non quas!'},
+    ]
+%}
+
+<section class="section-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 hidden-xs">
+                <div class="list-group fixed">
+                  <a href="#past" class="list-group-item">The Past</a>
+                  <a href="#current" class="list-group-item">Current Status</a>
+                  <a href="#future" class="list-group-item">The Future</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                {% for item in items %}
+                    <div id="{{item.id}}" class="intro-horizontal">
+                        <h2>The {{item.id}}</h2>
+                        <i class="fa {{item.class}} fa-5x float-left"></i>
+                        <div class="two-columns">{{item.content}}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $('.fixed').sometimes({topElem: $('.navbar-float')});
+</script>
+{% endblock scripts %}

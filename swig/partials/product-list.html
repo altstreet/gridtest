@@ -1,0 +1,30 @@
+
+ {%
+    set products = [
+        {src:'images/shoe01.jpg', price: 12.5, description:'Distinctio quibusdam facere eligendi modi.'},
+        {src:'images/shoe01.jpg', price: 12.5, description:'Maiores earum, commodi illum,  quam natus excepturi?'},
+        {src:'images/shoe01.jpg', price: 12.5, description:'Pariatur enim officia culpa, repudiandae alias sed consequatur consectetur!'},
+        {src:'images/cloth01.jpg', price: 12.5, description:'Deleniti facilis, delectus, Qui magni, quam fuga molestias, quo sint quibusdam.'},
+        {src:'images/cloth01.jpg', price: 12.5, description:'Pariatur enim officia culpa, facilis.'},
+        {src:'images/cloth01.jpg', price: 12.5, description:'Deleniti facilis, delectus, Qui magni, quam fuga molestias, quo sint quibusdam.'},
+    ]
+%}
+<section class="product-list">
+    <div class="row blocks" data-autofix='2,2,3'>
+        {% for product in products %}
+        <div class="col-xs-6 col-md-4">
+            <div class="block product-block white-background">
+                <a href="#"><img src="{{product.src}}" alt=""></a>
+            	<p>{{product.description}}</p>
+
+                <div class="product-bottom">
+                	<span>${{product.price}}</span>
+                	<span class="pull-right"><a href="#"><img class="cart-icon" src="images/shopping_cart_add.png" alt=""></a></span>
+                </div>
+                <div class="clear-both"></div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

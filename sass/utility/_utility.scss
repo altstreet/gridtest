@@ -1,0 +1,95 @@
+@mixin setBackgroundColor($color)
+{
+	background-color: $color;
+	color: contrast-color($color);
+}
+
+@mixin backgroundGrddient($color: $primaryColor, $percent: 25%) {
+	@include setBackgroundColor($color);
+	@if lightness($color) > 50% {
+		@include background-image(linear-gradient($color, darken($color, $percent)));
+		// @include text-shadow($lightColor 1px 1px 1px);
+	}
+	@else {
+		@include background-image(linear-gradient($color, lighten($color, $percent)));
+		// @include text-shadow($darkColor 1px 1px 1px);
+	}
+}
+
+.primary-background {
+	@include setBackgroundColor($primaryColor);
+}
+
+.secondary-background {
+	@include setBackgroundColor($secondaryColor);
+}
+
+.tertiary-background {
+	@include setBackgroundColor($tertiaryColor);
+}
+
+.light-background {
+	@include setBackgroundColor($lightColor);
+}
+
+.dark-background {
+	@include setBackgroundColor($darkColor);
+}
+
+.white-background {
+	@include setBackgroundColor(white);
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+
+.primary-gradient {
+	@include backgroundGrddient($primaryColor);
+}
+
+.secondary-gradient {
+	@include backgroundGrddient($secondaryColor);
+}
+
+.tertiary-gradient {
+	@include backgroundGrddient($tertiaryColor);
+}
+
+.light-gradient {
+	@include backgroundGrddient($lightColor);
+}
+
+.dark-gradient {
+	@include backgroundGrddient($darkColor);
+}
+
+.fixed {
+	z-index: 1;
+	// position: fixed;
+	// top: 100px;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.clear-both {
+	height: 0;
+}
+.clear-both:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}

@@ -1,0 +1,232 @@
+{% extends 'partials/layout.html' %}
+{% block title %}Grid Test{% endblock %}
+
+{% block content %}
+
+<section class="leading-section">
+    <div class="container">
+        <h2>Grid Test</h2>
+    </div>
+</section>
+
+{%
+    set items = [
+        {menuName: 'FootWear', subMenu: ['Men', 'Women', 'Kids']},
+        {menuName: 'Clothing', subMenu: ['Men', 'Women', 'Kids']},
+        {menuName: 'Sports', subMenu: ['Men', 'Women', 'Kids']},
+        {menuName: 'Fitness', subMenu: ['Men', 'Women', 'Kids']},
+   ]
+%}
+
+<section class="section-white">
+
+    <div class="container">
+        <div class="row vertical-menu-parent">
+            <div class="col-sm-3 hidden-xs">
+
+            <div class="panel panel-default">
+			  <div class="panel-heading">Sort By:</div>
+			  <div class="panel-body">		    
+                <div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="optionsRadios1" value="value" checked>
+				    Value
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="optionsRadios2" value="future">
+				    Future
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="optionsRadios3" value="past">
+				    Past
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="optionsRadios4" value="health">
+				    Health
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="optionsRadios5" value="income">
+				    Income
+				  </label>
+				</div>
+			  </div>
+			</div>
+
+            </div>
+            <div class="col-sm-9">
+
+				<section class="grids">
+				   
+				</section>            
+
+             </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="js/handlebars-v3.0.3.js"></script>
+
+<script id="grid-template" type="text/x-handlebars-template">
+
+    <div class="row blocks" data-autofix='2,2,3'>
+        [[#each grids]]
+        <div class="col-xs-6 col-md-4">
+            <div class="block grid-block white-background">
+                <div class="name">
+                	<span>[[Name]]([[TickerSymbol]])</span>
+                </div>
+
+            	<p>
+	                <a href="https://simplywall.st[[logo]]"><img class="logo" src="https://simplywall.st[[logo]]" alt="logo"></a>
+            		[[ShortDescription]]
+            	</p>
+
+            	<div class="grid-area">
+	                <div id='snowflake[[@index]]' class='full-width' style=' background-color:black;'></div>
+                </div>
+                <div>
+                	<a href="https://simplywall.st[[cover]]"><img class="full-width" src="https://simplywall.st[[cover]]" alt="cover"></a>  
+                </div>
+
+            </div>
+        </div>
+        [[/each]]
+    </div>
+         
+</script>
+
+<script type="text/javascript">
+
+Handlebars.setDelimiter = function(start,end){
+    //save a reference to the original compile function
+    if(!Handlebars.original_compile) Handlebars.original_compile = Handlebars.compile;
+
+    Handlebars.compile = function(source){
+        var s = "\\"+start,
+            e = "\\"+end,
+            RE = new RegExp('('+s+'{2,3})(.*?)('+e+'{2,3})','ig');
+
+            replacedSource = source.replace(RE,function(match, startTags, text, endTags, offset, string){
+                var startRE = new RegExp(s,'ig'), endRE = new RegExp(e,'ig');
+
+                startTags = startTags.replace(startRE,'\{');
+                endTags = endTags.replace(endRE,'\}');
+
+                return startTags+text+endTags;
+            });
+
+        return Handlebars.original_compile(replacedSource);
+    };
+};
+
+Handlebars.setDelimiter('[',']');
+	
+(function ($) {
+
+	var source   = $("#grid-template").html();
+	var template = Handlebars.compile(source);
+	var grids = [];
+	var offset = 0;
+	var endOfGrid = false;
+	var url = "https://simplywall.st/api/grid?query=all&industry=2010000&orderBy=order-by-value&offset=0&maxResults=12";
+
+	function fetchGrid(url, append) {
+
+		append = typeof append !== 'undefined' ? append : false;
+		if (!append) {
+			offset = 0;
+			endOfGrid = false;
+		}
+		console.log(url);
+
+		$.ajax({
+	        url: url
+	    }).then(function(data) {
+	    	grids = (append) ? grids.concat(data.companies) : data.companies;
+
+	    	console.log(grids);
+
+			var options = {
+					background: "https://simplywall.st/images/background13.svg",
+
+					borderMinColor: "#00ff00", // named colours not supported
+					borderMaxColor: "#ff0000", // named colours not supported
+					borderColorValue: 0, // Snowflake border colour
+					borderAlpha: 0.8,
+					borderWidth: 1,
+
+					flakeMinColor: "#00ff00", // named colours not supported
+					flakeMaxColor: "#ff0000", // named colours not supported
+					flakeColorValue: 0, // Snowflake inside colour
+					flakeAlpha: 0.5,
+
+					tensor: 1,
+					animated: 1,
+					easing: 0.5,
+					diagnose: false,
+					diameter: 0.875 // Proportional to the total available min(height, width)
+			};
+
+		    respondCanvas();
+
+			$(window).off("resize", respondCanvas);
+		    $(window).resize(respondCanvas);
+
+		    function respondCanvas() {
+	 
+	 			$('.grids').html("");
+		    	$('.grids').append(template({grids: grids}));
+		    	app.tuneBlocks();
+	 	    	grids.forEach(function(element, index){
+					var container = $('#snowflake'+index);
+				    var p = container.parent();
+				    var width = p.width();
+
+			        p.height(width);
+			        container.height(width);
+			        container.width(width);
+
+					var s = new SnowFlake(document.getElementById('snowflake'+index));
+					s.Render(element.scores, options);
+
+		        });
+
+		    }
+	    });
+
+	}
+
+	fetchGrid(url);
+
+    $('input:radio[name=optionsRadios]').change(function () {
+    	fetchGrid(url.replace('value', this.value));
+    });
+
+    $(window).scroll(function()	{
+	    if($(window).scrollTop() == $(document).height() - $(window).height())
+	    {
+	    	if (!endOfGrid) {
+		    	offset += 12;	        
+		    	fetchGrid(url.replace('offset=0', 'offset='+offset), true);
+		    	if (offset > grids.length) endOfGrid = true;
+	    	}
+	    }
+	});
+
+}(jQuery));
+
+</script>
+
+{% endblock scripts %}
