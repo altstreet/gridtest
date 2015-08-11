@@ -9,15 +9,6 @@
     </div>
 </section>
 
-{%
-    set items = [
-        {menuName: 'FootWear', subMenu: ['Men', 'Women', 'Kids']},
-        {menuName: 'Clothing', subMenu: ['Men', 'Women', 'Kids']},
-        {menuName: 'Sports', subMenu: ['Men', 'Women', 'Kids']},
-        {menuName: 'Fitness', subMenu: ['Men', 'Women', 'Kids']},
-   ]
-%}
-
 <section class="section-white">
 
     <div class="container">
@@ -156,7 +147,7 @@ Handlebars.setDelimiter('[',']');
 	    }).then(function(data) {
 	    	grids = (append) ? grids.concat(data.companies) : data.companies;
 
-	    	console.log(grids);
+	    	// console.log(grids);
 
 			var options = {
 					background: "https://simplywall.st/images/background13.svg",
