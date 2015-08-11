@@ -13,5 +13,3 @@ How to Run
 2. change current folder to gridtest/dist
 3. php -S localhost:8000
 4. type http://localhost:8000 in browser
-
-The most important part about this project is the grid 
